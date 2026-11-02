@@ -2,39 +2,69 @@
 
 # Machine Learning Classification & Streamlit Web App
 
+## Student Information
+- **Name:** Balakumar R
+- **ID:** 2026ak05509
+
+---
+
 ## a. Problem Statement
-The goal of this project is to perform binary classification to predict target outcomes using machine learning models. We train five standard machine learning classifiers, evaluate their performance across multiple evaluation metrics, and deploy an interactive dashboard on Streamlit Community Cloud for model testing.
+The objective of this project is to implement, evaluate, and deploy an end-to-end machine learning classification pipeline to predict water potability (safe vs. unsafe drinking water) based on chemical and physical water quality metrics. The system includes an interactive Streamlit web dashboard to demonstrate model inference, data cleaning, and metric evaluation without retraining.
+
+---
 
 ## b. Dataset Description
-- **Source:** UCI Machine Learning Repository / Kaggle
-- **Instances:** > 500 rows
-- **Features:** > 12 numerical and categorical features
-- **Target Variable:** Binary Classification target (`0` or `1`)
+- **Dataset Name:** Water Quality & Potability Dataset
+- **Source:** Kaggle / UCI Repository (`drinking_water_potability_full_data.csv`)
+- **Problem Type:** Binary Classification (`0` = Not Potable, `1` = Potable)
+- **Minimum Instance Size:** > 500 rows
+- **Minimum Feature Size:** $\ge 12$ features (including pH, Hardness, Solids, Chloramines, Sulfate, Conductivity, Organic Carbon, Trihalomethanes, and Turbidity).
+
+---
 
 ## c. GitHub Repository Link
-https://github.com/balakumar-bits/ML_assignment_2
+[Insert Your GitHub Repository URL Here]
 
-## d. Models Used & Comparison Table
+---
+
+## d. Models Used & Evaluation Comparison Table
 
 | ML Model Name | Accuracy | AUC | Precision | Recall | F1 | MCC |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Logistic Regression** | 0.8450 | 0.8920 | 0.8200 | 0.8100 | 0.8150 | 0.6850 |
-| **Decision Tree** | 0.7800 | 0.7750 | 0.7500 | 0.7600 | 0.7550 | 0.5580 |
-| **KNN** | 0.8100 | 0.8500 | 0.7900 | 0.7800 | 0.7850 | 0.6180 |
-| **Naive Bayes** | 0.8000 | 0.8650 | 0.7600 | 0.8300 | 0.7935 | 0.6020 |
-| **Support Vector Machine** | 0.8620 | 0.9100 | 0.8550 | 0.8300 | 0.8423 | 0.7210 |
+| **Logistic Regression** | 0.5244 | 0.5474 | 0.4146 | 0.5312 | 0.4658 | 0.0500 |
+| **Decision Tree** | 0.5960 | 0.5703 | 0.4813 | 0.4531 | 0.4668 | 0.1423 |
+| **KNN** | 0.6143 | 0.5978 | 0.5093 | 0.3203 | 0.3933 | 0.1392 |
+| **Naive Bayes** | 0.6143 | 0.6090 | 0.5161 | 0.1875 | 0.2751 | 0.1049 |
+| **Support Vector Machine** | 0.6707 | 0.6487 | 0.7041 | 0.2695 | 0.3898 | 0.2696 |
 
-*(Note: Replace sample metrics with your exact script outputs)*
+---
 
-### Performance Observations
+### Observations on Model Performance
 
 | ML Model Name | Observation about model performance |
 | :--- | :--- |
-| **Logistic Regression** | Performs reliably as a linear baseline with high interpretability and smooth ROC-AUC performance. |
-| **Decision Tree** | Prone to slight overfitting on raw split data, leading to lower generalized AUC and MCC scores compared to ensemble/distance methods. |
-| **KNN** | Moderate performance sensitive to feature scale; effective after standard scaling but computationally slower on larger evaluation batches. |
-| **Naive Bayes** | Achieves strong recall due to independence assumptions, though precision drops slightly when feature correlations exist. |
-| **Support Vector Machine** | Achieves top overall classification metrics with an optimal hyper-margin separation boundary across scaled features. |
+| **Logistic Regression** | Acts as a linear baseline. While class balancing improved recall, overall metrics remain modest due to non-linear relationships and feature overlaps in water quality indicators. |
+| **Decision Tree** | Captures non-linear thresholds better than linear models, yielding moderate accuracy and an improved Matthews Correlation Coefficient (MCC of 0.1423). |
+| **KNN** | Distance-based classification performs decently after feature scaling, achieving balanced accuracy around 61.4% with reasonable precision. |
+| **Naive Bayes** | Relies on strong feature independence assumptions, resulting in high precision but low recall for positive potability classes. |
+| **Support Vector Machine** | **Best Performing Model.** Achieves the highest Accuracy (67.07%), AUC (0.6487), Precision (70.41%), and MCC (0.2696) by finding an optimal margin boundary across scaled features. |
 
-### Overall Winner
-**Support Vector Machine (SVM)** achieved the highest F1-score (0.8423) and MCC (0.7210), demonstrating superior generalization across both precision and recall metrics.
+### Overall Winner for this Dataset
+**Support Vector Machine (SVM)** is the overall winner for this dataset, demonstrating superior overall discriminative power and higher classification reliability compared to the linear and probabilistic alternatives.
+
+---
+
+## Project Structure
+```text
+project-folder/
+│-- app.py                  # Interactive Streamlit Web Application
+│-- train_and_save.py       # Training script with Scikit-Learn Pipelines
+│-- requirements.txt        # Required python dependencies
+│-- README.md               # Project documentation & report
+│-- test_data.csv           # Test dataset upload sample (with target column)
+└── model/                  # Saved model pipeline artifacts (.pkl files)
+    │-- logistic_regression.pkl
+    │-- decision_tree.pkl
+    │-- knn.pkl
+    │-- naive_bayes.pkl
+    └── support_vector_machine.pkl
