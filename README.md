@@ -23,8 +23,7 @@ The objective of this project is to implement, evaluate, and deploy an end-to-en
 ---
 
 ## c. GitHub Repository Link
-[Insert Your GitHub Repository URL Here]
-
+https://github.com/balakumar-bits/ML_assignment_2
 ---
 
 ## d. Models Used & Evaluation Comparison Table
