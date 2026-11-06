@@ -57,7 +57,7 @@ https://github.com/balakumar-bits/ML_assignment_2
 ```text
 project-folder/
 │-- app.py                  # Interactive Streamlit Web Application
-│-- train_and_save.py       # Training script with Scikit-Learn Pipelines
+│-- train_and_save_models.py# Training script with Scikit-Learn Pipelines
 │-- requirements.txt        # Required python dependencies
 │-- README.md               # Project documentation & report
 │-- test_data.csv           # Test dataset upload sample (with target column)
